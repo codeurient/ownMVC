@@ -2,6 +2,8 @@
 
 namespace application\core;
 
+use application\core\View;
+
 class Router {
 
     protected $routes = [];
@@ -42,14 +44,14 @@ class Router {
                     // Взываются методы тут.
                     $controller->$action();
                 } else {
-                    echo "There is no method: " . $action;
+                    View::errorCode(404);
                 }
             } else {
-                echo "There is no class: " . $path;
+                View::errorCode(404);
             }
         }
         else{
-            echo "There is no Router";
+            View::errorCode(404);
         }
     }
 
