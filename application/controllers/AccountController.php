@@ -7,7 +7,11 @@ use application\core\Controller;
 class AccountController extends Controller {
 
     public function loginAction() {
-        $this->view->redirect('/public_html');
+        if(!empty($_POST)) {
+            $this->view->message('success', 'Text of error');
+//            $this->view->location('/');
+        }
+
         $this->view->render('Login');
     }
 

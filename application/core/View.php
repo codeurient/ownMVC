@@ -16,7 +16,7 @@ class View {
 
     public function render($title, $vars = []) {
         // extract() рассматривает ключи массива в качестве имён переменных, а их значения - в качестве значений этих переменных
-        // extract($vars);
+        extract($vars);
         $path = 'application/views/'.$this->path.'.php';
         if(file_exists($path)){
             // bufer cixiwini iwe saliriq
@@ -27,8 +27,6 @@ class View {
             $content = ob_get_clean();
 
             require 'application/views/layouts/'.$this->layout.'.php';
-        } else{
-            echo 'View can not find: '.$this->path;
         }
     }
 
@@ -46,5 +44,13 @@ class View {
             require $path;
         }
         exit;
+    }
+
+    public function message($status, $message) {
+        exit(json_encode(['status' => $status, 'message' => $message]));
+    }
+
+    public function location($url) {
+        exit(json_encode(['url' => $url]));
     }
 }
